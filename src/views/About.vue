@@ -1,5 +1,23 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <NavBar @logOut='logOut'/>
   </div>
 </template>
+<script>
+import firebase from 'firebase';
+import NavBar from '../components/Navbar'
+
+export default {
+  name: 'about',
+  components:{
+    NavBar,
+  },
+  methods: {
+    logOut() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('/');
+      });
+    },
+  },
+};
+</script>
